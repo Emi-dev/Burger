@@ -1,0 +1,47 @@
+            <form class="create-form mx-4 px-4">
+                <label for="burgerName" class="inputLabel">Add Burger</label><br>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="burgerName" placeholder="Enter Burger Name">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-warning" mr-auto>Submit</button>
+                    </div>
+                </div> 
+            </form>
+
+            <div class="row mx-4 mp-4">
+                <div class="readyBurger col-xs-12 col-sm-5 m-auto">
+                    <h2>Burgers Ready</h2>
+                    <table class="table table-warning rounded">
+                        <tr>
+                            <th>ID</th>
+                            <th>Burger</th>
+                        </tr>
+                        {{#each burgers}}
+                            {{> burgers/burger-block devoured=false}}
+                        {{/each}}
+                    </table>
+                    {{!-- <ul class="list-group">
+                        {{#each burgers}}
+                            {{> burgers/burger-block devoured=false}}
+                        {{/each}}
+                    </ul> --}}
+                </div>
+
+                <div class="devouredBurger col-xs-12 col-sm-5 m-auto">
+                   <h2>Burgers Ready</h2>
+                    <table class="table table-warning rounded">
+                        <tr>
+                            <th>ID</th>
+                            <th>Burger</th>
+                        </tr>
+                        {{#each burgers}}
+                            {{> burgers/burger-block devoured=true}}
+                        {{/each}}
+                    </table>                    
+                    {{!-- <ul class="list-group">
+                        {{#each burgers}}
+                            {{> burgers/burger-block devoured=true}}
+                        {{/each}}
+                    </ul> --}}
+                </div>
+            </div>
