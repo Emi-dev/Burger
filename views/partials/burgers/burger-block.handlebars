@@ -6,4 +6,10 @@
             <button class="devourBtn btn btn btn-warning" data-id="{{id}}">Devour</button>
         </td>
     {{/unless}}
+
+    {{#if devoured}}
+        <td>
+            <button class="deleteBtn btn btn btn-warning" data-id="{{id}}">Delete</button>
+        </td>
+    {{/if}}
 </tr>

@@ -17,7 +17,6 @@ const orm = {
         let queryString = "INSERT INTO " + table;
         queryString += " (" + cols.toString() + ") ";
         queryString += "VALUES" + " (" + printQuestionMarks(vals.length) +  ")";
-        console.log("orm.create: ", queryString);
 
         connection.query(queryString, vals, function(err, result) {
             if(err) throw err;
@@ -30,7 +29,16 @@ const orm = {
         let queryString = "UPDATE " + table;
         queryString += " SET " + objToSql(objVal);
         queryString += " WHERE " + condition;
-        console.log("orm.update: ", queryString);
+
+        connection.query(queryString, function(err, result) {
+            if(err) throw err;
+            cb(result);
+        })
+    }, 
+
+    delete: function(table, condition, cb) {
+        let queryString = "DELETE FROM " + table;
+        queryString += " WHERE " + condition;
 
         connection.query(queryString, function(err, result) {
             if(err) throw err;

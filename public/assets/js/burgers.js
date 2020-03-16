@@ -32,4 +32,15 @@ $(function() {
             location.reload();
         });
     });
+
+    // Delete button event handler
+    $(".deleteBtn").on("click", function(event) {
+        const id = $(this).data("id");
+        // Send the DELETE request
+        $.ajax("/api/burgers/" + id, {
+            type: "DELETE"
+        }).then(function() {
+            location.reload();
+        });
+    });
 });
