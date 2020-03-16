@@ -48,6 +48,8 @@ function printQuestionMarks(num) {
 // Function to convert an object to a query string and return the string.
 // e.g. {id: 1, burger_name: "Cheese Burger"} -> id=1,burger_name=Cheese Burger
 function objToString(obj) {
+    // Object.entries method creates an array of given object's arrays. 
+    // Each inner array has two items: property and value.
     const entries = Object.entries(obj);
     const newObjArr = [];
     entries.forEach(entry => {
