@@ -63,7 +63,7 @@ views
 `server.js`</br>
 
 ### Technologies
-Project is created with:
+#### Project is created with:
 * JavaScript
 * jQuery
 * Node.js
@@ -72,8 +72,7 @@ Project is created with:
 * Handlebars
 * ORM
 
-### Technologies
-Packages used:
+#### Packages used:
 * express
 * express-handlebars
 * mysql
