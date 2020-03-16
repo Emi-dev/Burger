@@ -26,10 +26,9 @@ const orm = {
     },
 
     // UPDATE
-    update: function(table, obj, condition, cb) {
+    update: function(table, objVal, condition, cb) {
         let queryString = "UPDATE " + table;
-        // queryString += " SET " + objToString(obj);
-        queryString += " SET devoured=true";
+        queryString += " SET " + objToSql(objVal);
         queryString += " WHERE " + condition;
         console.log("orm.update: ", queryString);
 
@@ -52,14 +51,15 @@ function printQuestionMarks(num) {
 
 // Function to convert an object to a query string and return the string.
 // e.g. {id: 1, burger_name: "Cheese Burger"} -> id=1,burger_name=Cheese Burger
-function objToString(obj) {
+function objToSql(obj) {
     // Object.entries method creates an array of given object's arrays. 
     // Each inner array has two items: property and value.
     const entries = Object.entries(obj);
     const newObjArr = [];
     entries.forEach(entry => {
         let newEntry = `${entry[0]}=`;
-        if(typeof entry[1] === "string") newEntry += `"${entry[1]}"`;
+        if(typeof entry[1] === "string" && entry[1].indexOf(" ") >= 0) 
+            newEntry += `"${entry[1]}"`;
         else newEntry += `${entry[1]}`;
         // push "key=value" into newObjArr
         newObjArr.push(newEntry);

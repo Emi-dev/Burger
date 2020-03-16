@@ -5,7 +5,6 @@ $(function() {
         event.preventDefault();
         const newBurger = {
             burgerName: $("#burgerName").val().trim(),
-            // devoured: false
         }
         // Send the POST request
         $.ajax("/api/burgers", {
@@ -20,9 +19,10 @@ $(function() {
     //  Devour button event handler
     $(".devourBtn").on("click", async function(event) {
         event.preventDefault();
-        const id = $(this).data("id");  // Get the burger id from the value of data-id attribute
+        // Get the burger id from the value of data-id attribute
+        const id = $(this).data("id");  
         const newDevoured = {
-            devoured: true              // Set the value of "devoured" column true
+            devoured: true  // Set the value of "devoured" column true
         }
         // Send the PUT request
         $.ajax("/api/burgers/" + id, {
@@ -32,12 +32,4 @@ $(function() {
             location.reload();
         });
     });
-
-    // $(document).on("click", ".devourBtn", function(event) {
-    //     console.log("devour!");
-    // });
-
-    // $(document).on("submit", ".create-form", function(event) {
-    //     console.log("submit!");
-    // });
 });
