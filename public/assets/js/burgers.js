@@ -1,44 +1,35 @@
 $(document).ready(function() {
-    $(".create-form").on("submit", async function(event) {
+    //  Add burger Submit button event handler
+    $(".create-form").on("submit", function(event) {
         event.preventDefault();
-        const addReady = addToReadyBurger();
-        location.reload();
-    });
-
-    $(".devourBtn").on("click", async function(event) {
-        event.preventDefault();
-        const id = $(this).data("id");
-
-        const updateDevoured = await updateDevouredBurger(id);
-        const deleteReady = await deleteFromReadyBurger(id);
-        location.reload();
-    });
-
-    function addToReadyBurger() {
         const newBurger = {
             burger_name: $("#burgerName").val().trim(),
             devoured: false
         }
-
-        return $.ajax("/api/burgers", {
+        // Send the POST request
+        $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
+        }).then(function() {
+            location.reload();
         });
-    }
+    });
 
-    function updateDevouredBurger(id) {
-        return $.ajax("/api/burgers" + id, {
-            type: "PUT"
+    //  Devour button event handler
+    $(".devourBtn").on("click", async function(event) {
+        event.preventDefault();
+        const id = $(this).data("id");  // Get the burger id from the value of data-id attribute
+        const newDevoured = {
+            devoured: true              // Set the value of "devoured" column true
+        }
+        // Send the PUT request
+        $.ajax("/api/burgers" + id, {
+            type: "PUT",
+            data: newDevoured
+        }).then(function() {
+            location.reload();
         });
-    }
-
-    function deleteFromReadyBurger(id) {
-        return $.ajax("/api/burgers" + id, {
-            type: "DELETE"
-        });
-    }
-
-
+    });
 
     // $(document).on("click", ".devourBtn", function(event) {
 
