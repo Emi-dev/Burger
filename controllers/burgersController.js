@@ -6,6 +6,7 @@ const router = express.Router();
 router.get("/", function(req, res) {
     burger.all(function(data) {
         const hbsObj = {burgers: data};
+        console.log("burgersController: all");
         res.render("index", hbsObj);
     });
 });

@@ -3,7 +3,9 @@ const connection = require("./connection");
 const orm = {
     // SELECT
     all: function(table, cb) {
-        const queryString = "SELECT * FROM " + table;
+        let queryString = "SELECT * FROM " + table;
+        console.log("orm.all: ", queryString);
+
         connection.query(queryString, function(err, result) {
             if(err) throw err;
             cb(result);
@@ -12,9 +14,10 @@ const orm = {
 
     // INSERT
     create: function(table, cols, vals, cb) {
-        const queryString = "INSERT INTO " + table;
+        let queryString = "INSERT INTO " + table;
         queryString += " (" + cols.toString() + ") ";
         queryString += "VALUES" + " (" + printQuestionMarks(vals.length) +  ")";
+        console.log("orm.create: ", queryString);
 
         connection.query(queryString, vals, function(err, result) {
             if(err) throw err;
@@ -24,9 +27,11 @@ const orm = {
 
     // UPDATE
     update: function(table, obj, condition, cb) {
-        const queryString = "UPDATE " + table;
-        queryString += " SET " + objToString(obj);
+        let queryString = "UPDATE " + table;
+        // queryString += " SET " + objToString(obj);
+        queryString += " SET devoured=true";
         queryString += " WHERE " + condition;
+        console.log("orm.update: ", queryString);
 
         connection.query(queryString, function(err, result) {
             if(err) throw err;

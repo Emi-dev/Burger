@@ -5,13 +5,14 @@ $(function() {
         event.preventDefault();
         const newBurger = {
             burgerName: $("#burgerName").val().trim(),
-            devoured: false
+            // devoured: false
         }
         // Send the POST request
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
         }).then(function() {
+            console.log("Made a new burger!");
             location.reload();
         });
     });
@@ -24,7 +25,7 @@ $(function() {
             devoured: true              // Set the value of "devoured" column true
         }
         // Send the PUT request
-        $.ajax("/api/burgers" + id, {
+        $.ajax("/api/burgers/" + id, {
             type: "PUT",
             data: newDevoured
         }).then(function() {
