@@ -1,47 +1,74 @@
-            <form class="create-form mx-4 px-4">
-                <label for="burgerName" class="inputLabel">Add Burger</label><br>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="burgerName" placeholder="Enter Burger Name">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-warning" mr-auto>Submit</button>
-                    </div>
-                </div> 
-            </form>
+<header class="container">
+    <div class="row mt-4 h-100 text-center">
+        <div class="col-xs-12 col-sm-3 text-center m-auto p-0">
+            <img class="img-fluid mx-auto" src="./assets/images/burger.png" alt="burger">
+        </div>
 
-            <div class="row mx-4 mp-4">
-                <div class="readyBurger col-xs-12 col-sm-5 m-auto">
-                    <h2>Burgers Ready</h2>
-                    <table class="table table-warning rounded">
-                        <tr>
-                            <th>ID</th>
-                            <th>Burger</th>
-                        </tr>
-                        {{#each burgers}}
-                            {{> burgers/burger-block devoured=false}}
-                        {{/each}}
-                    </table>
-                    {{!-- <ul class="list-group">
-                        {{#each burgers}}
-                            {{> burgers/burger-block devoured=false}}
-                        {{/each}}
-                    </ul> --}}
-                </div>
+        <div class="col-xs-12 col-sm-6 m-auto p-0">
+            <h1>Eat-Da-Burger!</h1>
+            <div id="dateTime" class="col-12 my-4"></div>
+        </div>
 
-                <div class="devouredBurger col-xs-12 col-sm-5 m-auto">
-                   <h2>Burgers Ready</h2>
-                    <table class="table table-warning rounded">
-                        <tr>
-                            <th>ID</th>
-                            <th>Burger</th>
-                        </tr>
-                        {{#each burgers}}
-                            {{> burgers/burger-block devoured=true}}
-                        {{/each}}
-                    </table>                    
-                    {{!-- <ul class="list-group">
-                        {{#each burgers}}
-                            {{> burgers/burger-block devoured=true}}
-                        {{/each}}
-                    </ul> --}}
-                </div>
+        <div class="col-xs-12 col-sm-3 text-center m-auto p-0">
+            <img class="img-fluid mx-auto" src="./assets/images/fries.png" alt="fries">
+        </div>
+    </div>
+</header>
+
+<main class="container my-4">
+        <form class="create-form mx-4 px-4">
+        <label for="burgerName" class="inputLabel">Add Burger</label><br>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="burgerName" placeholder="Enter Burger Name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-warning" mr-auto>Submit</button>
             </div>
+        </div> 
+    </form>
+
+    <div class="row mx-4 mp-4">
+        <div class="readyBurger col-xs-12 col-sm-5 m-auto">
+            <h2>Burgers Ready</h2>
+            <table class="table table-warning rounded">
+                <tr>
+                    <th>ID</th>
+                    <th>Burger</th>
+                </tr>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                        {{> burgers/burger-block devoured=false}}
+                    {{/unless}}
+                {{/each}}
+            </table>
+            {{!-- <ul class="list-group">
+                {{#each burgers}}
+                    {{> burgers/burger-block devoured=false}}
+                {{/each}}
+            </ul> --}}
+        </div>
+
+        <div class="devouredBurger col-xs-12 col-sm-5 m-auto">
+            <h2>Burgers Devoured</h2>
+            <table class="table table-warning rounded">
+                <tr>
+                    <th>ID</th>
+                    <th>Burger</th>
+                </tr>
+                {{#each burgers}}
+                    {{#if devoured}}
+                        {{> burgers/burger-block devoured=true}}
+                    {{/if}}
+                {{/each}}
+            </table>                    
+            {{!-- <ul class="list-group">
+                {{#each burgers}}
+                    {{> burgers/burger-block devoured=true}}
+                {{/each}}
+            </ul> --}}
+        </div>
+    </div>
+</main>
+
+<footer class="mt-auto py-3 text-center">
+    Copyright &copy; 2020 Emi Clar
+</footer>
