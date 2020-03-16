@@ -1,9 +1,10 @@
-$(document).ready(function() {
+$(function() {
     //  Add burger Submit button event handler
     $(".create-form").on("submit", function(event) {
+        console.log("submit!");
         event.preventDefault();
         const newBurger = {
-            burger_name: $("#burgerName").val().trim(),
+            burgerName: $("#burgerName").val().trim(),
             devoured: false
         }
         // Send the POST request
@@ -32,6 +33,10 @@ $(document).ready(function() {
     });
 
     // $(document).on("click", ".devourBtn", function(event) {
+    //     console.log("devour!");
+    // });
 
+    // $(document).on("submit", ".create-form", function(event) {
+    //     console.log("submit!");
     // });
 });

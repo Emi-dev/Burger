@@ -3,6 +3,8 @@ const express = require("express");
 // Set the environment variable PORT or 8080
 const PORT = process.env.PORT || 8080;
 
+const app = express();
+
 // Use the express.urlencoded built-in middleware function to parses incoming requests with urlencoded payloads
 app.use(express.urlencoded({ extended: true }));
 // Use the express.json built-in middleware function to parses incoming requests with JSON payloads 
